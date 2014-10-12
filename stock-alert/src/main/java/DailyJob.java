@@ -4,6 +4,8 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
+import qinyi.IStockBean;
+
 public class DailyJob implements Job {
 
 //��ʵ��Job�ӿڷ���
@@ -12,7 +14,8 @@ public void execute(JobExecutionContext jobCtx)throws JobExecutionException {
 //	new BaiduPushUtil().push_msgToAll( "qinyi ", "中文终于可以用了通过服务器");
 	//new StockBean().process5Minutesly();
 	try {
-		new StockBean().processDaily();
+		IStockBean stockBean = (IStockBean) jobCtx.getJobDetail().getJobDataMap().get("stockBean");        
+		stockBean.processDaily();
 	} catch (GeneralSecurityException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

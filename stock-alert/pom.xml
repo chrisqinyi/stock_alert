@@ -74,6 +74,11 @@
 <!-- 			<scope>provided</scope> -->
 <!-- 		</dependency> -->
     <dependency>
+            <groupId>org.clojure</groupId>
+            <artifactId>clojure</artifactId>
+            <version>1.6.0</version>
+        </dependency>
+    <dependency>
         <groupId>javax.mail</groupId>
         <artifactId>mail</artifactId>
         <version>1.4.7</version>
@@ -207,6 +212,20 @@ http://maven.duapp.com/nexus/content/groups/public/
 					<path>/petclinic</path>
 				</configuration>
 			</plugin>
+			            <plugin>
+                <groupId>com.theoryinpractise</groupId>
+                <artifactId>clojure-maven-plugin</artifactId>
+                <version>1.3.13</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
 	</build>
 </project>

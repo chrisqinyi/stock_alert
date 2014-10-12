@@ -1,8 +1,11 @@
 import java.security.GeneralSecurityException;
 
 import org.quartz.Job;
+import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+
+import qinyi.IStockBean;
 
 public class MinuteJob implements Job {
 
@@ -11,7 +14,9 @@ public class MinuteJob implements Job {
 public void execute(JobExecutionContext jobCtx)throws JobExecutionException {
 //	new BaiduPushUtil().push_msgToAll( "qinyi ", "中文终于可以用了通过服务器");
 	try {
-		new StockBean().process5Minutesly();
+		//new StockBean().process5Minutesly();
+		IStockBean stockBean = (IStockBean) jobCtx.getJobDetail().getJobDataMap().get("stockBean");        
+		stockBean.process5Minutesly();
 	} catch (GeneralSecurityException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

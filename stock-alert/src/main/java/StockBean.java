@@ -7,7 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class StockBean {
+import qinyi.IStockBean;
+
+public class StockBean implements IStockBean {
 	static Map<String, Queue> stockPriceMinutelyMap = new HashMap<String, Queue>();
 	// static Map<String, Queue> stockPrice5MinutelyMap = new HashMap<String,
 	// Queue>();
@@ -21,6 +23,9 @@ public class StockBean {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see IStockBean#processMinutely()
+	 */
 	public void processMinutely() throws GeneralSecurityException {
 		System.out.println("before process");
 		// Map<String, BigDecimal> tmp = StockPriceUtil
@@ -67,6 +72,9 @@ public class StockBean {
 		System.out.println("after process");
 	}
 
+	/* (non-Javadoc)
+	 * @see IStockBean#process5Minutesly()
+	 */
 	public void process5Minutesly() throws GeneralSecurityException {
 		System.out.println("before process");
 		// Map<String, BigDecimal> tmp = StockPriceUtil
@@ -155,6 +163,9 @@ public class StockBean {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see IStockBean#processDaily()
+	 */
 	public void processDaily() throws GeneralSecurityException {
 		System.out.println("before process");
 		// Map<String, BigDecimal> tmp = StockPriceUtil

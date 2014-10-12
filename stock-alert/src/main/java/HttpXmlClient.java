@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -73,14 +74,16 @@ public class HttpXmlClient {
 	private static HttpResponse sendRequest(DefaultHttpClient httpclient,
 			HttpUriRequest httpost) {
 		log.info("execute sendRequest...");
+		
 		HttpResponse response = null;
+		for(int i=0 ; null==response && i<3;i++){
 		try {
 			response = httpclient.execute(httpost);
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}}
 		return response;
 	}
 

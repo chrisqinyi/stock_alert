@@ -11,6 +11,8 @@ import org.quartz.SchedulerException;
 import org.quartz.SchedulerFactory;
 import org.quartz.impl.StdSchedulerFactory;
 
+import qinyi.IStockBean;
+
 public class MainServlet extends HttpServlet {
 
 	private Scheduler scheduler;
@@ -42,6 +44,19 @@ public class MainServlet extends HttpServlet {
 
 			// JobDetail jobDetail = new JobDetail("job1_1", "jGroup1",
 			// SimpleJob.class);
+			IStockBean stockBean=null;
+			try {
+				stockBean = (IStockBean) Class.forName("qinyi.StockBean").newInstance();
+			} catch (InstantiationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			JobDetail minJob1 = new JobDetail("minJob1", "jGroup1",
 					MinuteJob.class);
 			JobDetail minJob2 = new JobDetail("minJob2", "jGroup1",
@@ -50,11 +65,24 @@ public class MainServlet extends HttpServlet {
 					MinuteJob.class);
 			JobDetail dailyJob = new JobDetail("dailyJob", "jGroup1",
 					DailyJob.class);
+			minJob1.getJobDataMap().put("stockBean", stockBean);
+			minJob2.getJobDataMap().put("stockBean", stockBean);
+			minJob3.getJobDataMap().put("stockBean", stockBean);
+			dailyJob.getJobDataMap().put("stockBean", stockBean);
 			// ��ͨ��SimpleTrigger������ȹ�������������ÿ2������һ�Σ�������100��
 
 			// SimpleTrigger simpleTrigger = new SimpleTrigger("trigger1_1",
 			// "tgroup1");
 
+//			CronTrigger minTrigger1 = new CronTrigger("trigger1", "group1",
+//					"0 0/1 * * * ?");
+//			CronTrigger minTrigger2 = new CronTrigger("trigger2", "group1",
+//					"0 0/1 * * * ?");
+//			CronTrigger minTrigger3 = new CronTrigger("trigger3", "group1",
+//					"0 0/1 * * * ?");
+//			CronTrigger dailyTrigger = new CronTrigger("trigger4", "group1",
+//					"0 0/1 * * * ?");
+			
 			CronTrigger minTrigger1 = new CronTrigger("trigger1", "group1",
 					"0 30-59/5 9-10 ? * MON-FRI");
 			CronTrigger minTrigger2 = new CronTrigger("trigger2", "group1",

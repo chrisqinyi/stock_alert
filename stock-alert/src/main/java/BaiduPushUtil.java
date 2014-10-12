@@ -27,7 +27,7 @@ public class BaiduPushUtil {
 	 * @param s
 	 * @return
 	 */
-	public String MD5(String s) {
+	public static String MD5(String s) {
 		char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 				'a', 'b', 'c', 'd', 'e', 'f' };
 		try {
@@ -56,7 +56,7 @@ public class BaiduPushUtil {
 	 * @return
 	 */
 
-	private SortedMap<String, String> mapSortByKey(
+	private static SortedMap<String, String> mapSortByKey(
 			Map<String, String> unsort_map) {
 		TreeMap<String, String> result = new TreeMap<String, String>();
 		Object[] unsort_key = unsort_map.keySet().toArray();
@@ -83,7 +83,7 @@ public class BaiduPushUtil {
 	 * @param secret
 	 * @return
 	 */
-	public String getSignature(String url, Map<String, String> parameters,
+	public static String getSignature(String url, Map<String, String> parameters,
 			String secret) {
 		// �Ƚ����������������ֵ��������������
 		Map<String, String> sortedParams = new HashMap<String, String>(
@@ -178,7 +178,7 @@ public class BaiduPushUtil {
 		return responseStr;
 	}
 
-	public void push_mailToAll(String title, String description)
+	public static void push_mailToAll(String title, String description)
 			throws GeneralSecurityException {
 		MailSenderInfo mailInfo = new MailSenderInfo();
 		mailInfo.setMailServerHost("smtp.mail.me.com");
@@ -196,7 +196,7 @@ public class BaiduPushUtil {
 		//sms.sendHtmlMail(mailInfo);// 发送html格式
 	}
 
-	public String push_msgToAll(String title, String description) {
+	public static String push_msgToAll(String title, String description) {
 		String url = "http://channel.api.duapp.com/rest/2.0/channel/channel";
 		// ������
 		String method = "push_msg";
@@ -251,12 +251,12 @@ public class BaiduPushUtil {
 
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws GeneralSecurityException {
 		// System.out.println(BaiduPushUtil.push_msg("990593941931946992",
 		// "4391131411952560641", new Date().toString(), "bbb"));
 		// System.out.println(new BaiduPushUtil().push_msg("818670655850242201",
 		// "4222129398189191299", "���ͳɹ�", "���ͳɹ�"));
-		System.out.println(new BaiduPushUtil().push_msgToAll("qinyi ",
-				"中文终于可以用了"));
+		new BaiduPushUtil().push_mailToAll("qinyi ",
+				"中文终于可以用了");
 	}
 }
