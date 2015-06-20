@@ -181,12 +181,12 @@ public class BaiduPushUtil {
 	public static void push_mailToAll(String title, String description)
 			throws GeneralSecurityException {
 		MailSenderInfo mailInfo = new MailSenderInfo();
-		mailInfo.setMailServerHost("smtp.mail.me.com");
-		mailInfo.setMailServerPort("587");
+		mailInfo.setMailServerHost("smtp.sina.com");
+		mailInfo.setMailServerPort("25");
 		mailInfo.setValidate(true);
-		mailInfo.setUserName("qinyichris@icloud.com");
+		mailInfo.setUserName("chris_qin_yi@sina.com");
 		mailInfo.setPassword("5C6E626762393B3A3F");// 您的邮箱密码
-		mailInfo.setFromAddress("qinyichris@icloud.com");
+		mailInfo.setFromAddress("chris_qin_yi@sina.com");
 		mailInfo.setToAddress("qinyichris@icloud.com");
 		mailInfo.setSubject(title);
 		mailInfo.setContent(description);

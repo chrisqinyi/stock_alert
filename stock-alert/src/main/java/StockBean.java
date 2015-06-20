@@ -2,6 +2,7 @@ import java.math.BigDecimal;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -231,5 +232,35 @@ public class StockBean implements IStockBean {
 		//new StockBean().process5Minutesly();
 		new StockBean().processDaily();
 		// new StockBean().processDailyIndex();
+	}
+
+	public Collection<String> getStockCodes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setStockCodes(Collection<String> stockCodes) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Collection<String> getStockCodesSell() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setStockCodesSell(Collection<String> stockCodesSell) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Collection<String> getStockCodesNew() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void setStockCodesNew(Collection<String> stockCodesNew) {
+		// TODO Auto-generated method stub
+		
 	}
 }

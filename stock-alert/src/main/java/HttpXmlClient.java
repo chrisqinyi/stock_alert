@@ -76,13 +76,13 @@ public class HttpXmlClient {
 		log.info("execute sendRequest...");
 		
 		HttpResponse response = null;
-		for(int i=0 ; null==response && i<3;i++){
-		try {
-			response = httpclient.execute(httpost);
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
+		for(int i=0 ; null==response || 200 != response.getStatusLine().getStatusCode() && i<3;i++){
+			try {
+				response = httpclient.execute(httpost);
+			} catch (ClientProtocolException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
 		}}
 		return response;
 	}

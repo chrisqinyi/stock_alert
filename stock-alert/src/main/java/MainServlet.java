@@ -1,4 +1,6 @@
+import java.io.IOException;
 import java.text.ParseException;
+import java.util.Arrays;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -15,6 +17,10 @@ import qinyi.IStockBean;
 
 public class MainServlet extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7138625741594875649L;
 	private Scheduler scheduler;
 
 	@Override
@@ -104,13 +110,15 @@ public class MainServlet extends HttpServlet {
 			scheduler.scheduleJob(minJob1, minTrigger1);// �� ע�Ტ���е���
 			scheduler.scheduleJob(minJob2, minTrigger2);
 			scheduler.scheduleJob(minJob3, minTrigger3);
-			scheduler.scheduleJob(dailyJob, dailyTrigger);
+			scheduler.scheduleJob(dailyJob, dailyTrigger);	
+//			DataPersistUtil.addData("stockCodes", Arrays.asList(new String[]{"6003861","6011771"}));
+			new DailyJob().execute(stockBean);
 			scheduler.start();// �ݵ�������
 		} catch (SchedulerException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
 			e.printStackTrace();
-		}
+		} 
 	}
 
 }
